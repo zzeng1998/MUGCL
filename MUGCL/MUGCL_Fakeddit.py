@@ -205,15 +205,6 @@ def train_fold(train_fold,test_fold):
                 feature_final = np.vstack((feature_final, multimodal.detach().cpu().numpy()))
                 label_save = np.array(y)
 
-            if epoch_ids == 0:
-                np.savetxt("feature_fakeddit/feature_text.txt", feature_text, fmt="%f", delimiter=" ")
-                np.savetxt("feature_fakeddit/feature_image.txt", feature_image, fmt="%f", delimiter=" ")
-                np.savetxt("feature_fakeddit/feature_final.txt", feature_final, fmt="%f", delimiter=" ")
-                np.savetxt("feature_fakeddit/label.txt", label_save, fmt="%f", delimiter=" ")
-            if epoch_ids == 7:
-                np.savetxt("feature_fakeddit/feature_final.txt", feature_final, fmt="%f", delimiter=" ")
-                np.savetxt("feature_fakeddit/label.txt", label_save, fmt="%f", delimiter=" ")
-
             Acc,Acc1, Prec1, Recll1, F1,Acc2, Prec2, Recll2, F2=evaluationclass(prediction,y)
             Accu, Pre, Rec, F11, AUC=evaluation(prediction,y)
             eval_loss = eval_loss / nb_eval_steps
